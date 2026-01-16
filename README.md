@@ -1,5 +1,28 @@
 # Incident Response Management: Ransomware in Healthcare
 
+This repository features a comprehensive **Incident Response Playbook** specifically tailored for hospital and clinical environments. This framework is unique because it integrates **clinical continuity** (patient safety) with **regulatory and legal compliance** (GRC).
+
+## 🌟 The Value Proposition: A Hybrid Approach
+Unlike traditional technical manuals, this protocol was developed by integrating three critical pillars:
+1. **Medical Perspective:** Prioritizing life-support systems (ICU, Operating Rooms) and implementing "Paper Continuity Protocols."
+2. **Legal Perspective:** Digital forensics management (Chain of Custody) and strict adherence to mandatory breach notification deadlines.
+3. **Technical Perspective:** Threat detection through SIEM (Splunk/Chronicle) and secure data recovery strategies.
+
+## ⚖️ Integrated Regulatory Frameworks
+The content of this repository ensures alignment with the following authorities and regulations:
+* **Mexico:** LFPDPPP (Sensitive Personal Data) and reporting to **INAI**.
+* **USA:** **HIPAA** Security and Privacy Rules supervised by **HHS/OCR**.
+* **International:** Incident response phases aligned with **NIST** and **SANS** standards.
+
+## 📂 Repository Contents
+* [Ransome-playbook.md](./Ransome-playbook.md): A detailed 6-step guide covering everything from Preparation to Lessons Learned.
+
+---
+**About the Author:**
+A professional with a dual background in **Medicine and Law**, specializing in Cybersecurity and Risk Management (GRC). My mission is to bridge the gap between technology, medical ethics, and the legal framework to protect healthcare institutions.
+
+# Incident Response Management: Ransomware in Healthcare
+
 Este repositorio contiene un **Playbook de Respuesta a Incidentes** diseñado específicamente para entornos hospitalarios. El enfoque es único, ya que integra la **continuidad clínica** (seguridad del paciente) con el **cumplimiento normativo y legal** (GRC).
 
 ## 🌟 Valor Agregado: El Enfoque Híbrido
