@@ -1,0 +1,95 @@
+### 🛡️ Step 1: Preparation (Preparación)
+
+The goal of this phase is to establish the technical and legal foundation required to respond to a ransomware incident without hesitating.
+
+* **Data Resiliency (3-2-1 Backup Rule):**
+    * Maintain **three** copies of all medical records.
+    * Store them on **two** different media types (e.g., Cloud and Local Server).
+    * Keep **one** copy "Offline" or "Air-gapped" to ensure the ransomware cannot reach the backups during an active infection.
+* **Legal & Compliance Readiness:**
+    * Pre-define a **Legal Counsel Task Force** to evaluate the legality of ransom payments under local and international laws (e.g., OFAC regulations or Mexico's LFPDPPP).
+    * Draft a **Communications Plan** for authorities (INAI/HHS) and affected patients to meet the mandatory notification deadlines (usually 72 hours under GDPR/GRC standards).
+* **Access Control & Hardening:**
+    * Implement **MFA (Multi-Factor Authentication)** on all administrative accounts used by hospital staff.
+    * Enforce the **Principle of Least Privilege (PoLP)** to ensure that a compromised doctor’s account cannot modify or encrypt the entire hospital database.
+* **Technical Inventory:**
+    * Maintain an updated list of all **Critical Assets**, including life-support systems, imaging servers (PACS), and Electronic Health Records (EHR).
+    ### 🔍 Step 2: Detection & Analysis (Detección y Análisis)
+
+The focus of this phase is to confirm the ransomware infection, identify its point of entry, and assess the potential legal and clinical impact.
+
+* **SIEM Alerting (Splunk/Chronicle):**
+    * Monitor for **high CPU usage** and massive file renaming/deletion events on the Electronic Health Record (EHR) server.
+    * Detect a surge in **"Access Denied"** logs, which often indicates the ransomware is trying to encrypt files without the correct permissions.
+* **Indicator of Compromise (IoC) Identification:**
+    * Search for known ransomware file extensions (e.g., `.wannacry`, `.locked`, `.crypt`) and the presence of a ransom note (`README.txt`).
+    * Analyze network traffic for connections to known **Command & Control (C2)** servers used by threat actors.
+* **Clinical Impact Assessment:**
+    * Determine if the affected systems include **Medical Imaging (PACS)** or life-support monitoring databases.
+    * Prioritize the analysis of servers containing **SPII (Sensitive Personally Identifiable Information)**, such as patient diagnoses and genetic data.
+* **Legal & Forensic Preservation:**
+    * Begin a **Chain of Custody** log to document all findings, ensuring that digital evidence is admissible in court or for insurance claims.
+    * Calculate the "Discovery Time" to ensure compliance with mandatory data breach notification laws (e.g., notifying the INAI or HHS).
+    ### 🚧 Step 3: Containment (Contención)
+
+The primary objective is to stop the ransomware from spreading to other clinical areas and to "quarantine" the infection while maintaining critical patient care.
+
+* **Short-Term Containment (Technical Isolation):**
+    * **Network Segmentation:** Immediately disconnect the infected segment (e.g., the billing or administrative VLAN) from the clinical network where life-support systems reside.
+    * **Endpoint Isolation:** Use EDR (Endpoint Detection and Response) tools to isolate infected laptops or servers from the internet and the local network.
+* **Service Continuity (The "Paper Protocol"):**
+    * Activate the **Hospital Contingency Plan**: Instruct medical staff to switch to manual/paper records for patient admissions and prescriptions to ensure care continues while systems are offline.
+    * Divert incoming emergency cases to nearby non-affected hospitals if critical diagnostic systems (like CT Scans or MRI) are compromised.
+* **System Preservation (Legal Evidence):**
+    * **Avoid Reformatting:** Do not wipe or reformat infected machines yet. A "Memory Dump" or "Disk Image" must be taken first to preserve evidence of the attack for insurance and legal purposes.
+    * **Password Reset:** Force an immediate global password reset for all administrative and privileged accounts to prevent the attacker from using stolen credentials for further movement.
+* **Financial Containment:**
+    * Notify the finance department to freeze any outgoing transfers related to "emergency payments" until the legal team confirms the policy regarding ransom demands.
+    ### 🧹 Step 4: Eradication (Erradicación)
+
+The goal of this phase is to eliminate all components of the ransomware from the environment and identify the "Patient Zero" to prevent a secondary infection.
+
+* **Malware Removal & Remediation:**
+    * Perform a full system scan and clean all infected nodes. If a machine is heavily compromised, perform a clean OS re-installation from trusted media.
+    * Identify and close the initial entry point (e.g., patching a VPN vulnerability or deleting a malicious email attachment).
+* **Vulnerability Management:**
+    * Apply all pending security patches to servers and medical devices that were exploited during the attack.
+    * Update antivirus signatures and EDR rules to recognize this specific strain of ransomware in the future.
+* **Account Sanitization (Legal/Security Audit):**
+    * Audit all Active Directory accounts created or modified during the incident. Delete any "backdoor" accounts the attacker may have established.
+    * Review and revoke any unauthorized API keys or third-party integrations that were granted during the breach.
+* **Credential Hardening:**
+    * Implement a mandatory password change for the entire organization (medical and administrative staff) using strong complexity requirements.
+    * Ensure MFA (Multi-Factor Authentication) is enforced on 100% of external-facing applications.
+    ### 🔄 Step 5: Recovery (Recuperación)
+
+The objective is to restore systems to normal operation, ensuring that data is clean, intact, and available for clinical use without risking a reinfection.
+
+* **Phased Restoration:**
+    * Restore systems in order of priority: 1. Life-critical systems (ICU monitors), 2. Diagnostic systems (EHR/PACS), 3. Administrative/Billing systems.
+    * Use "Clean Backups" verified by the security team to avoid restoring the ransomware along with the data.
+* **Data Integrity Verification (Medical/Legal Accuracy):**
+    * Perform "Sanity Checks" on medical records. Verify that patient dosages, allergies, and surgical histories match the last known good state before the encryption.
+    * Use Hash functions (Digital Signatures) to prove that the restored database is identical to the backup and has not been altered during the incident.
+* **Continuous Monitoring:**
+    * Implement "Enhanced Logging" for at least 30 days on restored servers to detect any lingering malicious activity or "cries for help" from hidden scripts.
+    * Monitor network traffic for unusual outbound connections that could indicate the attacker is still trying to communicate with the system.
+* **Service Handover:**
+    * Coordinate with Hospital Leadership to officially transition from the "Paper Protocol" back to Digital Systems.
+    * Communicate to the medical staff that systems are safe to use for patient care.
+    ### 📝 Step 6: Lessons Learned (Post-Incidente y Mejora Continua)
+
+The goal is to analyze the incident, document the response efficiency, and fulfill all legal and regulatory reporting obligations to prevent future occurrences.
+
+* **Incident Documentation & Legal Reporting:**
+    * Create a **Final Incident Report** detailing the timeline, root cause, and remediation actions. This document is vital for insurance claims and regulatory audits.
+    * Finalize mandatory notifications to data protection authorities (e.g., INAI in Mexico, HHS/OCR in the US) to demonstrate compliance with the 72-hour reporting windows.
+* **Root Cause Analysis (RCA):**
+    * Conduct a formal meeting with IT, Legal, and Medical leadership to identify why the attack was successful (e.g., a phished doctor's credential or an unpatched legacy medical device).
+    * Evaluate the effectiveness of the "Paper Protocol" during the containment phase to improve clinical business continuity.
+* **Update Security Controls:**
+    * Modify firewall rules, EDR policies, and SIEM correlation logic based on the specific indicators of compromise (IoCs) found during the attack.
+    * Update this Playbook to reflect any "bottlenecks" discovered during the response (e.g., if the legal team was hard to reach or backups took too long to restore).
+* **Staff Awareness & Training:**
+    * Implement targeted Cybersecurity Awareness training for the specific department where the breach originated.
+    * Share a high-level, non-technical summary of the incident with hospital staff to reinforce the importance of MFA and suspicious email reporting.
